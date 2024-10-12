@@ -51,7 +51,7 @@ class _HomeState extends State<Home> {
   Future<void> _initConnectivityStatus() async {
     final result = await _connectivity.checkConnectivity();
     setState(() {
-      isConnected = result != ConnectivityResult;
+      isConnected = !result.contains(ConnectivityResult.none);
     });
   }
 
@@ -68,10 +68,10 @@ class _HomeState extends State<Home> {
           child: Image.asset(
             isConnected ? 'assets/connected.png' : 'assets/disconnected.png',
             key: ValueKey(isConnected),
-            width: 500,
-            height: 500,
+            width: 200,
+            height: 200,
           ),
-          ),
+        ),
       ),
     );
   }
